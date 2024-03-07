@@ -4,6 +4,10 @@
  */
 package icad2admin.view;
 
+import icad2admin.model.UtilisateursDAO;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author a.andissac
@@ -15,6 +19,8 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
+//        UtilisateursDAO DAO = new UtilisateursDAO();
+
     }
 
     /**
@@ -73,16 +79,15 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(ButtonSupprimer)
                 .addGap(82, 82, 82))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(76, Short.MAX_VALUE)
+                .addContainerGap(53, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(labelListe, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(235, 235, 235))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 766, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(ButtonAjouter)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 766, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ButtonAjouter))
                         .addGap(38, 38, 38))))
         );
         layout.setVerticalGroup(
@@ -92,9 +97,9 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(labelListe)
                 .addGap(15, 15, 15)
                 .addComponent(ButtonAjouter)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
+                .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ButtonSupprimer)
                     .addComponent(ButtonModifier))
@@ -105,7 +110,7 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonAjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAjouterActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_ButtonAjouterActionPerformed
 
     /**

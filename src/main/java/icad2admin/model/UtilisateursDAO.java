@@ -14,25 +14,25 @@ import java.util.List;
 public class UtilisateursDAO {
     private Connection connexion;
     
-    public UtilisateursDAO() throws Exception {
+    public UtilisateursDAO() {
         this.connexion = MySQLConnection.getConnexion();
     }
-    public Utilisateurs create(Utilisateurs unUtilisateur) {
-        
-    }
-    public Utilisateurs get(Integer id) {
-        
-    }
-    public List<Utilisateurs> getAll() {
-        
-    }
-    public void update(Utilisateurs unUtilisateur) {
-        
-    }
-    public void delete(Integer id) {
-        
-    }
-    public void delete(Utilisateurs unUtilisateur) {
-        
-    }
+//    public Utilisateurs create(Utilisateurs unUtilisateur) {
+//        
+//    }
+//    public Utilisateurs get(Integer id) {
+//        
+//    }
+//    public List<Utilisateurs> getAll() {
+//        
+//    }
+//    public void update(Utilisateurs unUtilisateur) {
+//        
+//    }
+//    public void delete(Integer id) {
+//        
+//    }
+//    public void delete(Utilisateurs unUtilisateur) {
+//        
+//    }
 }
