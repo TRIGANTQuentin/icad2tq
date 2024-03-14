@@ -4,8 +4,8 @@
  */
 package icad2admin.view;
 
-import icad2admin.model.Utilisateurs;
-import icad2admin.model.UtilisateursDAO;
+import icad2admin.model.Utilisateur;
+import icad2admin.model.UtilisateurDAO;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,9 +21,9 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
-        UtilisateursDAO DAO = new UtilisateursDAO();
-        List<Utilisateurs> utilisateurs = DAO.getAll();
-        for (Utilisateurs utilisateur : utilisateurs) {
+        UtilisateurDAO DAO = new UtilisateurDAO();
+        List<Utilisateur> utilisateurs = DAO.getAll();
+        for (Utilisateur utilisateur : utilisateurs) {
             System.out.println("-> " + utilisateur.getNom());
             System.out.println("-> " + utilisateur.getAdresse());
         }

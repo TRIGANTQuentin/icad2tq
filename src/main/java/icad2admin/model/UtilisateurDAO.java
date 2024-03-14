@@ -15,11 +15,11 @@ import java.util.List;
  *
  * @author a.andissac
  */
-public class UtilisateursDAO {
+public class UtilisateurDAO {
 
     private Connection connexion;
 
-    public UtilisateursDAO() {
+    public UtilisateurDAO() {
         this.connexion = MySQLConnection.getConnexion();
     }
 //    public Utilisateurs create(Utilisateurs unUtilisateur) {
@@ -29,9 +29,9 @@ public class UtilisateursDAO {
 //        
 //    }
 
-    public List<Utilisateurs> getAll() {
+    public List<Utilisateur> getAll() {
 
-        List<Utilisateurs> utilisateurs = new ArrayList<Utilisateurs>();
+        List<Utilisateur> utilisateurs = new ArrayList<Utilisateur>();
         String query = "SELECT * FROM utilisateur";
 
         try {
@@ -46,7 +46,7 @@ public class UtilisateursDAO {
                 String fonction = result.getString("FONCTION_USER");
                 String adresse = result.getString("ADRESSE_USER");
                 int tel = Integer.parseInt(result.getString("TELEPHONE_USER"));
-                Utilisateurs utilisateur = new Utilisateurs(id, nom, prenom, mdp, email, fonction, adresse, tel);
+                Utilisateur utilisateur = new Utilisateur(id, nom, prenom, mdp, email, fonction, adresse, tel);
                 utilisateurs.add(utilisateur);
             }
         } catch (SQLException e) {

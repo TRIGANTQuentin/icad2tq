@@ -8,7 +8,7 @@ package icad2admin.model;
  *
  * @author a.andissac
  */
-public class Utilisateurs {
+public class Utilisateur {
     private int id;
     private String nom;
     private String prenom;
@@ -18,7 +18,7 @@ public class Utilisateurs {
     private String adresse;
     private int tel;
 
-    public Utilisateurs(int id, String nom, String prenom, String mdp, String email, String fonction, String adresse, int tel) {
+    public Utilisateur(int id, String nom, String prenom, String mdp, String email, String fonction, String adresse, int tel) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -29,7 +29,7 @@ public class Utilisateurs {
         this.tel = tel;
     }
 
-    public Utilisateurs(String nom, String prenom, String mdp, String email, String fonction, String adresse, int tel) {
+    public Utilisateur(String nom, String prenom, String mdp, String email, String fonction, String adresse, int tel) {
         this.nom = nom;
         this.prenom = prenom;
         this.mdp = mdp;
