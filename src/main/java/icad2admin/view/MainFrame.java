@@ -4,7 +4,9 @@
  */
 package icad2admin.view;
 
+import icad2admin.model.Utilisateurs;
 import icad2admin.model.UtilisateursDAO;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,7 +21,12 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
-//        UtilisateursDAO DAO = new UtilisateursDAO();
+        UtilisateursDAO DAO = new UtilisateursDAO();
+        List<Utilisateurs> utilisateurs = DAO.getAll();
+        for (Utilisateurs utilisateur : utilisateurs) {
+            System.out.println("-> " + utilisateur.getNom());
+            System.out.println("-> " + utilisateur.getAdresse());
+        }
 
     }
 
@@ -110,7 +117,7 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonAjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAjouterActionPerformed
-
+        
     }//GEN-LAST:event_ButtonAjouterActionPerformed
 
     /**
