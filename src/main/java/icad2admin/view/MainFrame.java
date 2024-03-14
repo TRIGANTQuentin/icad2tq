@@ -9,6 +9,7 @@ import icad2admin.model.UtilisateurDAO;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,13 +22,20 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
+        this.updateUI();
+    }
+
+    public void updateUI() {
+        DefaultTableModel tblModel = (DefaultTableModel) TableListeUser.getModel();
         UtilisateurDAO DAO = new UtilisateurDAO();
         List<Utilisateur> utilisateurs = DAO.getAll();
-        for (Utilisateur utilisateur : utilisateurs) {
-            System.out.println("-> " + utilisateur.getNom());
-            System.out.println("-> " + utilisateur.getAdresse());
-        }
 
+        tblModel.setRowCount(0);
+
+        for (Utilisateur utilisateur : utilisateurs) {
+            Object[] data = {utilisateur.getId(), utilisateur.getNom(), utilisateur.getPrenom(), utilisateur.getMdp(), utilisateur.getEmail(), utilisateur.getFonction(), utilisateur.getAdresse(), utilisateur.getTel()};
+            tblModel.addRow(data);
+        }
     }
 
     /**
@@ -53,10 +61,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         TableListeUser.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "ID_USER", "NOM_USER", "PRENOM_USER", "MDP_USER", "EMAIL_USER", "FONCTION_USER", "ADRESSE_USER", "TELEPHONE_USER"
@@ -117,7 +122,7 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonAjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAjouterActionPerformed
-        
+
     }//GEN-LAST:event_ButtonAjouterActionPerformed
 
     /**

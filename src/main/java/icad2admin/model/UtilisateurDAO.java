@@ -22,9 +22,10 @@ public class UtilisateurDAO {
     public UtilisateurDAO() {
         this.connexion = MySQLConnection.getConnexion();
     }
-//    public Utilisateurs create(Utilisateurs unUtilisateur) {
-//        
-//    }
+   public Utilisateur create(Utilisateur unUtilisateur) {
+        return null;
+ 
+   }
 //    public Utilisateurs get(Integer id) {
 //        
 //    }
@@ -63,4 +64,5 @@ public class UtilisateurDAO {
 //    public void delete(Utilisateurs unUtilisateur) {
 //        
 //    }
+    
 }
