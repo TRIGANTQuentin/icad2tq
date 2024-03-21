@@ -10,18 +10,22 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 /**
  *
  * @author a.andissac
  */
 public class AddUserDialog extends javax.swing.JDialog {
 
+    MainFrame mainFrame = null;
+    
     /**
      * Creates new form AddUserDialog
      */
     public AddUserDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.mainFrame = (MainFrame)parent;
     }
 
     /**
@@ -40,7 +44,7 @@ public class AddUserDialog extends javax.swing.JDialog {
         prenomLabel = new javax.swing.JLabel();
         jTextPrenom = new javax.swing.JTextField();
         metierLabel = new javax.swing.JLabel();
-        JBoxMetier = new javax.swing.JComboBox<>();
+        jBoxMetier = new javax.swing.JComboBox<>();
         mailLabel = new javax.swing.JLabel();
         jTextMail = new javax.swing.JTextField();
         mdpLabel = new javax.swing.JLabel();
@@ -51,7 +55,6 @@ public class AddUserDialog extends javax.swing.JDialog {
         telephoneLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 600));
 
         titleLabel.setText("Ajouter un utilisateur");
 
@@ -80,7 +83,7 @@ public class AddUserDialog extends javax.swing.JDialog {
 
         metierLabel.setText("Métier :");
 
-        JBoxMetier.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Veterinaire", "Policier", "Eleveur" }));
+        jBoxMetier.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Veterinaire", "Policier", "Eleveur" }));
 
         mailLabel.setText("Mail :");
 
@@ -137,7 +140,7 @@ public class AddUserDialog extends javax.swing.JDialog {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jTextNom, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTextPrenom, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(JBoxMetier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jBoxMetier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTextMail, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(addButon, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -169,7 +172,7 @@ public class AddUserDialog extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(metierLabel)
-                    .addComponent(JBoxMetier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jBoxMetier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(mailLabel)
@@ -201,24 +204,24 @@ public class AddUserDialog extends javax.swing.JDialog {
             String prenom = jTextPrenom.getText();
             String mdp = jTextMdp.getText();
             String mail = jTextMail.getText();
-            String metier = JBoxMetier.getSelectedItem().toString();
+            String metier = jBoxMetier.getSelectedItem().toString();
             String adresse = jTextAdresse.getText();
             String telephone = jTextTelephone.getText();
             
-            UtilisateurDAO DAO = new UtilisateurDAO();
+            UtilisateurDAO dao = new UtilisateurDAO();
             
             Utilisateur utilisateur = new Utilisateur(nom, prenom, mdp, mail, metier, adresse, telephone);
             
-            DAO.insert(utilisateur);
+            dao.insert(utilisateur);
         } catch (SQLException ex) {
             Logger.getLogger(AddUserDialog.class.getName()).log(Level.SEVERE, null, ex);
         }
         
        this.dispose();
-       MainFrame main = new MainFrame();
-       main.setVisible(true);
+       this.mainFrame.updateUI();
        
-//       main.updateUI();
+       
+//     main.updateUI();
        
     }//GEN-LAST:event_addButonActionPerformed
 
@@ -289,9 +292,9 @@ public class AddUserDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> JBoxMetier;
     private javax.swing.JButton addButon;
     private javax.swing.JLabel adresseLabel;
+    private javax.swing.JComboBox<String> jBoxMetier;
     private javax.swing.JTextField jTextAdresse;
     private javax.swing.JTextField jTextMail;
     private javax.swing.JTextField jTextMdp;

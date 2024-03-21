@@ -26,9 +26,9 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     public void updateUI() {
-        DefaultTableModel tblModel = (DefaultTableModel) TableListeUser.getModel();
-        UtilisateurDAO DAO = new UtilisateurDAO();
-        List<Utilisateur> utilisateurs = DAO.getAll();
+        DefaultTableModel tblModel = (DefaultTableModel) tableListeUser.getModel();
+        UtilisateurDAO dao = new UtilisateurDAO();
+        List<Utilisateur> utilisateurs = dao.getAll();
 
         tblModel.setRowCount(0);
 
@@ -49,7 +49,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         labelListe = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        TableListeUser = new javax.swing.JTable();
+        tableListeUser = new javax.swing.JTable();
         ButtonAjouter = new javax.swing.JButton();
         ButtonSupprimer = new javax.swing.JButton();
         ButtonModifier = new javax.swing.JButton();
@@ -59,7 +59,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         labelListe.setText("Liste des Utilisateurs");
 
-        TableListeUser.setModel(new javax.swing.table.DefaultTableModel(
+        tableListeUser.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -67,7 +67,10 @@ public class MainFrame extends javax.swing.JFrame {
                 "ID_USER", "NOM_USER", "PRENOM_USER", "MDP_USER", "EMAIL_USER", "FONCTION_USER", "ADRESSE_USER", "TELEPHONE_USER"
             }
         ));
-        jScrollPane1.setViewportView(TableListeUser);
+        tableListeUser.setDoubleBuffered(true);
+        tableListeUser.setDragEnabled(true);
+        jScrollPane1.setViewportView(tableListeUser);
+        tableListeUser.getAccessibleContext().setAccessibleName("");
 
         ButtonAjouter.setText("Ajouter");
         ButtonAjouter.addActionListener(new java.awt.event.ActionListener() {
@@ -122,7 +125,7 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonAjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAjouterActionPerformed
-        this.setVisible(false);
+
         AddUserDialog addUserDialog = new AddUserDialog(this,true);
         addUserDialog.setVisible(true);
     }//GEN-LAST:event_ButtonAjouterActionPerformed
@@ -166,8 +169,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton ButtonAjouter;
     private javax.swing.JButton ButtonModifier;
     private javax.swing.JButton ButtonSupprimer;
-    private javax.swing.JTable TableListeUser;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelListe;
+    private javax.swing.JTable tableListeUser;
     // End of variables declaration//GEN-END:variables
 }

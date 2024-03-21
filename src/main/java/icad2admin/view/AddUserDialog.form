@@ -44,7 +44,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jTextNom" min="-2" pref="194" max="-2" attributes="0"/>
                                   <Component id="jTextPrenom" min="-2" pref="194" max="-2" attributes="0"/>
-                                  <Component id="JBoxMetier" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jBoxMetier" min="-2" max="-2" attributes="0"/>
                                   <Component id="jTextMail" min="-2" pref="194" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -89,7 +89,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="metierLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="JBoxMetier" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jBoxMetier" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -157,7 +157,7 @@
         <Property name="text" type="java.lang.String" value="M&#xe9;tier :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="JBoxMetier">
+    <Component class="javax.swing.JComboBox" name="jBoxMetier">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="3">
