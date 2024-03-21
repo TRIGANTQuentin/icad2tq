@@ -16,9 +16,9 @@ public class Utilisateur {
     private String email;
     private String fonction;
     private String adresse;
-    private int tel;
+    private String tel;
 
-    public Utilisateur(int id, String nom, String prenom, String mdp, String email, String fonction, String adresse, int tel) {
+    public Utilisateur(int id, String nom, String prenom, String mdp, String email, String fonction, String adresse, String tel) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -29,7 +29,7 @@ public class Utilisateur {
         this.tel = tel;
     }
 
-    public Utilisateur(String nom, String prenom, String mdp, String email, String fonction, String adresse, int tel) {
+    public Utilisateur(String nom, String prenom, String mdp, String email, String fonction, String adresse, String tel) {
         this.nom = nom;
         this.prenom = prenom;
         this.mdp = mdp;
@@ -95,11 +95,11 @@ public class Utilisateur {
         this.adresse = adresse;
     }
 
-    public int getTel() {
+    public String getTel() {
         return tel;
     }
 
-    public void setTel(int tel) {
+    public void setTel(String tel) {
         this.tel = tel;
     }
     

@@ -5,6 +5,7 @@
 package icad2admin.model;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -22,13 +23,29 @@ public class UtilisateurDAO {
     public UtilisateurDAO() {
         this.connexion = MySQLConnection.getConnexion();
     }
-   public Utilisateur create(Utilisateur unUtilisateur) {
-        return null;
- 
+   public void insert (Utilisateur unUtilisateur) throws SQLException {
+         String query = "INSERT INTO utilisateur(NOM_USER,PRENOM_USER,MDP_USER,EMAIL_USER,FONCTION_USER,ADRESSE_USER,TELEPHONE_USER) values(?,?,?,?,?,?,?)";
+         PreparedStatement ps = connexion.prepareStatement(query); 
+         
+         ps.setString(1, unUtilisateur.getNom());
+         ps.setString(2, unUtilisateur.getPrenom());
+         ps.setString(3, unUtilisateur.getMdp());
+         ps.setString(4, unUtilisateur.getEmail());
+         ps.setString(5, unUtilisateur.getFonction());
+         ps.setString(6, unUtilisateur.getAdresse());
+         ps.setString(7, unUtilisateur.getTel());     
+         
+        ps.executeUpdate();
+         
+       
+  
+         
+         
+         
+         
+            
    }
-//    public Utilisateurs get(Integer id) {
-//        
-//    }
+
 
     public List<Utilisateur> getAll() {
 
@@ -46,7 +63,7 @@ public class UtilisateurDAO {
                 String email = result.getString("EMAIL_USER");
                 String fonction = result.getString("FONCTION_USER");
                 String adresse = result.getString("ADRESSE_USER");
-                int tel = Integer.parseInt(result.getString("TELEPHONE_USER"));
+                String tel = result.getString("TELEPHONE_USER");
                 Utilisateur utilisateur = new Utilisateur(id, nom, prenom, mdp, email, fonction, adresse, tel);
                 utilisateurs.add(utilisateur);
             }
@@ -55,6 +72,7 @@ public class UtilisateurDAO {
         }
         return utilisateurs;
     }
+    
 //    public void update(Utilisateurs unUtilisateur) {
 //        
 //    }

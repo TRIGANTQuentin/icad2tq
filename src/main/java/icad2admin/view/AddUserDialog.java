@@ -4,6 +4,12 @@
  */
 package icad2admin.view;
 
+import icad2admin.model.Utilisateur;
+import icad2admin.model.UtilisateurDAO;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author a.andissac
@@ -189,17 +195,31 @@ public class AddUserDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addButonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButonActionPerformed
-        // TODO add your handling code here:
-        String nom = nomLabel.getText();
-        String prenom = prenomLabel.getText();
-        String mdp = mdpLabel.getText();
-        String mail = mailLabel.getText();
-        String metier = metierLabel.getText();
-        String adresse = adresseLabel.getText();
-        String telephone = telephoneLabel.getText();
+        try {
+            // TODO add your handling code here:
+            String nom = jTextNom.getText();
+            String prenom = jTextPrenom.getText();
+            String mdp = jTextMdp.getText();
+            String mail = jTextMail.getText();
+            String metier = JBoxMetier.getSelectedItem().toString();
+            String adresse = jTextAdresse.getText();
+            String telephone = jTextTelephone.getText();
+            
+            UtilisateurDAO DAO = new UtilisateurDAO();
+            
+            Utilisateur utilisateur = new Utilisateur(nom, prenom, mdp, mail, metier, adresse, telephone);
+            
+            DAO.insert(utilisateur);
+        } catch (SQLException ex) {
+            Logger.getLogger(AddUserDialog.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
-        String query = "INSERT INTO utilisateur(NOM_USER,PRENOM_USER,MDP_USER,EMAIL_USER,FONCTION_USER,ADRESSE_USER,TELEPHONE_USER) values(?,?,?,?,?,?,?,?)";
-        
+       this.dispose();
+       MainFrame main = new MainFrame();
+       main.setVisible(true);
+       
+//       main.updateUI();
+       
     }//GEN-LAST:event_addButonActionPerformed
 
     private void jTextNomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextNomActionPerformed
