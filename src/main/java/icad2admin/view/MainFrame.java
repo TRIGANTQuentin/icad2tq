@@ -122,7 +122,8 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonAjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAjouterActionPerformed
-
+        AddUserDialog addUserDialog = new AddUserDialog(this,true);
+        addUserDialog.setVisible(true);
     }//GEN-LAST:event_ButtonAjouterActionPerformed
 
     /**
