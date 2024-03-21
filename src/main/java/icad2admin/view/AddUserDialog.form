@@ -36,40 +36,34 @@
                       <EmptySpace min="-2" pref="135" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="adresseLabel" min="-2" max="-2" attributes="0"/>
-                                  <Component id="mdpLabel" min="-2" max="-2" attributes="0"/>
-                                  <Component id="cpLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="prenomLabel" min="-2" max="-2" attributes="0"/>
+                                  <Component id="nomLabel" min="-2" max="-2" attributes="0"/>
+                                  <Component id="metierLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="mailLabel" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jTextField4" min="-2" pref="194" max="-2" attributes="0"/>
-                                  <Component id="jTextField6" min="-2" pref="194" max="-2" attributes="0"/>
-                                  <Component id="jTextField5" min="-2" pref="194" max="-2" attributes="0"/>
+                                  <Component id="jTextNom" min="-2" pref="194" max="-2" attributes="0"/>
+                                  <Component id="jTextPrenom" min="-2" pref="194" max="-2" attributes="0"/>
+                                  <Component id="JBoxMetier" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTextMail" min="-2" pref="194" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="addButon" min="-2" pref="132" max="-2" attributes="0"/>
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="prenomLabel" min="-2" max="-2" attributes="0"/>
-                                          <Component id="nomLabel" min="-2" max="-2" attributes="0"/>
-                                          <Component id="metierLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="mailLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="villeLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="telephoneLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jTextField1" min="-2" pref="194" max="-2" attributes="0"/>
-                                          <Component id="jTextField2" min="-2" pref="194" max="-2" attributes="0"/>
-                                          <Component id="Veterinaire" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jTextField3" min="-2" pref="194" max="-2" attributes="0"/>
-                                          <Component id="jTextField7" alignment="0" min="-2" pref="194" max="-2" attributes="0"/>
-                                          <Component id="jTextField8" min="-2" pref="194" max="-2" attributes="0"/>
-                                      </Group>
+                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                              <Component id="addButon" min="-2" pref="132" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="adresseLabel" min="-2" max="-2" attributes="0"/>
+                                      <Component id="mdpLabel" min="-2" max="-2" attributes="0"/>
+                                      <Component id="telephoneLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jTextMdp" min="-2" pref="194" max="-2" attributes="0"/>
+                                      <Component id="jTextAdresse" min="-2" pref="194" max="-2" attributes="0"/>
+                                      <Component id="jTextTelephone" min="-2" pref="194" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -88,51 +82,41 @@
               <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="nomLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextNom" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="prenomLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextPrenom" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="metierLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="Veterinaire" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="JBoxMetier" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="mailLabel" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextMail" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="mdpLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextMdp" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="adresseLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField6" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextAdresse" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="cpLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField5" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="telephoneLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextTelephone" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="villeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField8" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="telephoneLabel" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField7" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Component id="addButon" min="-2" pref="42" max="-2" attributes="0"/>
-              <EmptySpace pref="36" max="32767" attributes="0"/>
+              <EmptySpace pref="104" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -151,9 +135,9 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addButonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="jTextNom">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextNomActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="nomLabel">
@@ -166,9 +150,9 @@
         <Property name="text" type="java.lang.String" value="Pr&#xe9;nom :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField2">
+    <Component class="javax.swing.JTextField" name="jTextPrenom">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextPrenomActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="metierLabel">
@@ -176,7 +160,7 @@
         <Property name="text" type="java.lang.String" value="M&#xe9;tier :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="Veterinaire">
+    <Component class="javax.swing.JComboBox" name="JBoxMetier">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="3">
@@ -195,9 +179,9 @@
         <Property name="text" type="java.lang.String" value="Mail :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField3">
+    <Component class="javax.swing.JTextField" name="jTextMail">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField3ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextMailActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="mdpLabel">
@@ -205,9 +189,9 @@
         <Property name="text" type="java.lang.String" value="Mot de passe :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField4">
+    <Component class="javax.swing.JTextField" name="jTextMdp">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField4ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextMdpActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="adresseLabel">
@@ -215,40 +199,20 @@
         <Property name="text" type="java.lang.String" value="Adresse :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField5">
+    <Component class="javax.swing.JTextField" name="jTextAdresse">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField5ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextAdresseActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="cpLabel">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Code Postal :"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jTextField6">
+    <Component class="javax.swing.JTextField" name="jTextTelephone">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField6ActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="villeLabel">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Ville :"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jTextField7">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField7ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextTelephoneActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="telephoneLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="T&#xe9;l&#xe9;phone :"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jTextField8">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField8ActionPerformed"/>
-      </Events>
     </Component>
   </SubComponents>
 </Form>
