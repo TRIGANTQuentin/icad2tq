@@ -6,9 +6,12 @@ package icad2admin.view;
 
 import icad2admin.model.Utilisateur;
 import icad2admin.model.UtilisateurDAO;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -23,7 +26,23 @@ public class MainFrame extends javax.swing.JFrame {
     public MainFrame() {
         initComponents();
         this.updateUI();
+        tableListeUser.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+               updateModifierButtonState();
+               
+            }
+        });
+        updateModifierButtonState();
+     
     }
+    
+    private void updateModifierButtonState(){
+        int selectRow = tableListeUser.getSelectedRowCount();
+        ButtonModifier.setEnabled(selectRow == 1);
+        ButtonSupprimer.setEnabled(selectRow > 0 );
+    }
+ 
 
     public void updateUI() {
         DefaultTableModel tblModel = (DefaultTableModel) tableListeUser.getModel();
@@ -80,8 +99,20 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         ButtonSupprimer.setText("Supprimer");
+        ButtonSupprimer.setEnabled(false);
+        ButtonSupprimer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonSupprimerActionPerformed(evt);
+            }
+        });
 
         ButtonModifier.setText("Modifier");
+        ButtonModifier.setEnabled(false);
+        ButtonModifier.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonModifierActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -129,6 +160,31 @@ public class MainFrame extends javax.swing.JFrame {
         AddUserDialog addUserDialog = new AddUserDialog(this,true);
         addUserDialog.setVisible(true);
     }//GEN-LAST:event_ButtonAjouterActionPerformed
+
+    private void ButtonModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonModifierActionPerformed
+            
+    }//GEN-LAST:event_ButtonModifierActionPerformed
+
+    private void ButtonSupprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSupprimerActionPerformed
+        int[] selectedRows = tableListeUser.getSelectedRows();
+        
+         UtilisateurDAO dao = new UtilisateurDAO();
+    for (int selectedRow : selectedRows) {
+        try{
+        int userId = (int) tableListeUser.getValueAt(selectedRow, 0);
+        dao.delete(userId);
+        }catch (ClassCastException e) {
+         System.err.println("Erreur: donnée introuvable pour le user ID dans la table");
+        }   catch (SQLException ex) {
+                Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
+    }
+     DefaultTableModel tblModel = (DefaultTableModel) tableListeUser.getModel();
+    for (int i = selectedRows.length - 1; i >= 0; i--) {
+        tblModel.removeRow(selectedRows[i]);
+    }
+    }//GEN-LAST:event_ButtonSupprimerActionPerformed
 
     /**
      * @param args the command line arguments

@@ -23,29 +23,22 @@ public class UtilisateurDAO {
     public UtilisateurDAO() {
         this.connexion = MySQLConnection.getConnexion();
     }
-   public void insert (Utilisateur unUtilisateur) throws SQLException {
-         String query = "INSERT INTO utilisateur(NOM_USER,PRENOM_USER,MDP_USER,EMAIL_USER,FONCTION_USER,ADRESSE_USER,TELEPHONE_USER) values(?,?,?,?,?,?,?)";
-         PreparedStatement ps = connexion.prepareStatement(query); 
-         
-         ps.setString(1, unUtilisateur.getNom());
-         ps.setString(2, unUtilisateur.getPrenom());
-         ps.setString(3, unUtilisateur.getMdp());
-         ps.setString(4, unUtilisateur.getEmail());
-         ps.setString(5, unUtilisateur.getFonction());
-         ps.setString(6, unUtilisateur.getAdresse());
-         ps.setString(7, unUtilisateur.getTel());     
-         
-        ps.executeUpdate();
-         
-       
-  
-         
-         
-         
-         
-            
-   }
 
+    public void insert(Utilisateur unUtilisateur) throws SQLException {
+        String query = "INSERT INTO utilisateur(NOM_USER,PRENOM_USER,MDP_USER,EMAIL_USER,FONCTION_USER,ADRESSE_USER,TELEPHONE_USER) values(?,?,?,?,?,?,?)";
+        PreparedStatement ps = connexion.prepareStatement(query);
+
+        ps.setString(1, unUtilisateur.getNom());
+        ps.setString(2, unUtilisateur.getPrenom());
+        ps.setString(3, unUtilisateur.getMdp());
+        ps.setString(4, unUtilisateur.getEmail());
+        ps.setString(5, unUtilisateur.getFonction());
+        ps.setString(6, unUtilisateur.getAdresse());
+        ps.setString(7, unUtilisateur.getTel());
+
+        ps.executeUpdate();
+
+    }
 
     public List<Utilisateur> getAll() {
 
@@ -72,15 +65,34 @@ public class UtilisateurDAO {
         }
         return utilisateurs;
     }
-    
-//    public void update(Utilisateurs unUtilisateur) {
-//        
-//    }
-//    public void delete(Integer id) {
-//        
-//    }
+
+    public void update(Utilisateur unUtilisateur) throws SQLException {
+        String query = "UPDATE utilisateur set ID_USER= ?, NOM_USER = ?, PRENOM_USER = ? , MDP_USER = ? , EMAIL_USER= ? , FONCTION_USER = ? , ADRESSE_USER = ? , TELEPHONE_USER = ? ";
+        PreparedStatement ps = connexion.prepareStatement(query);
+
+        ps.setInt(1, unUtilisateur.getId());
+        ps.setString(2, unUtilisateur.getNom());
+        ps.setString(3, unUtilisateur.getPrenom());
+        ps.setString(3, unUtilisateur.getMdp());
+        ps.setString(4, unUtilisateur.getEmail());
+        ps.setString(5, unUtilisateur.getFonction());
+        ps.setString(6, unUtilisateur.getAdresse());
+        ps.setString(7, unUtilisateur.getTel());
+
+        ps.executeUpdate();
+
+    }
+
+    public void delete(int userId) throws SQLException {
+        String query = "DELETE FROM utilisateur WHERE ID_USER = ?";
+        PreparedStatement ps = connexion.prepareStatement(query);
+
+        ps.setInt(1, userId);
+
+        ps.executeUpdate();
+    }
 //    public void delete(Utilisateurs unUtilisateur) {
 //        
 //    }
-    
+
 }

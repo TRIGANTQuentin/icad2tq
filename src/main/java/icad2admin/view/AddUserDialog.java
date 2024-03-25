@@ -4,11 +4,13 @@
  */
 package icad2admin.view;
 
+import icad2admin.HashTool;
 import icad2admin.model.Utilisateur;
 import icad2admin.model.UtilisateurDAO;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.mindrot.jbcrypt.BCrypt;
 
 
 /**
@@ -48,11 +50,11 @@ public class AddUserDialog extends javax.swing.JDialog {
         mailLabel = new javax.swing.JLabel();
         jTextMail = new javax.swing.JTextField();
         mdpLabel = new javax.swing.JLabel();
-        jTextMdp = new javax.swing.JTextField();
         adresseLabel = new javax.swing.JLabel();
         jTextAdresse = new javax.swing.JTextField();
         jTextTelephone = new javax.swing.JTextField();
         telephoneLabel = new javax.swing.JLabel();
+        jPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -95,12 +97,6 @@ public class AddUserDialog extends javax.swing.JDialog {
 
         mdpLabel.setText("Mot de passe :");
 
-        jTextMdp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextMdpActionPerformed(evt);
-            }
-        });
-
         adresseLabel.setText("Adresse :");
 
         jTextAdresse.addActionListener(new java.awt.event.ActionListener() {
@@ -129,19 +125,6 @@ public class AddUserDialog extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(135, 135, 135)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(21, 21, 21)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(prenomLabel)
-                                    .addComponent(nomLabel)
-                                    .addComponent(metierLabel)
-                                    .addComponent(mailLabel))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextNom, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextPrenom, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jBoxMetier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextMail, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(addButon, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createSequentialGroup()
@@ -151,9 +134,23 @@ public class AddUserDialog extends javax.swing.JDialog {
                                         .addComponent(telephoneLabel))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jTextMdp, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jTextAdresse, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jTextTelephone, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                        .addComponent(jTextTelephone, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addGap(21, 21, 21)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(prenomLabel)
+                                        .addComponent(nomLabel)
+                                        .addComponent(metierLabel)
+                                        .addComponent(mailLabel))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jTextNom, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextPrenom, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jBoxMetier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextMail, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addContainerGap(347, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -180,7 +177,7 @@ public class AddUserDialog extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(mdpLabel)
-                    .addComponent(jTextMdp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(adresseLabel)
@@ -202,7 +199,7 @@ public class AddUserDialog extends javax.swing.JDialog {
             // TODO add your handling code here:
             String nom = jTextNom.getText();
             String prenom = jTextPrenom.getText();
-            String mdp = jTextMdp.getText();
+            String mdp = new String(HashTool.hash(String.valueOf(jPassword.getPassword())));
             String mail = jTextMail.getText();
             String metier = jBoxMetier.getSelectedItem().toString();
             String adresse = jTextAdresse.getText();
@@ -236,10 +233,6 @@ public class AddUserDialog extends javax.swing.JDialog {
     private void jTextMailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextMailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextMailActionPerformed
-
-    private void jTextMdpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextMdpActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextMdpActionPerformed
 
     private void jTextAdresseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextAdresseActionPerformed
         // TODO add your handling code here:
@@ -295,9 +288,9 @@ public class AddUserDialog extends javax.swing.JDialog {
     private javax.swing.JButton addButon;
     private javax.swing.JLabel adresseLabel;
     private javax.swing.JComboBox<String> jBoxMetier;
+    private javax.swing.JPasswordField jPassword;
     private javax.swing.JTextField jTextAdresse;
     private javax.swing.JTextField jTextMail;
-    private javax.swing.JTextField jTextMdp;
     private javax.swing.JTextField jTextNom;
     private javax.swing.JTextField jTextPrenom;
     private javax.swing.JTextField jTextTelephone;

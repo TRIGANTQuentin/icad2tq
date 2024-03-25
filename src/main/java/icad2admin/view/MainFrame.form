@@ -162,12 +162,20 @@
     <Component class="javax.swing.JButton" name="ButtonSupprimer">
       <Properties>
         <Property name="text" type="java.lang.String" value="Supprimer"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButtonSupprimerActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="ButtonModifier">
       <Properties>
         <Property name="text" type="java.lang.String" value="Modifier"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButtonModifierActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
