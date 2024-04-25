@@ -86,6 +86,11 @@ public class AddUserDialog extends javax.swing.JDialog {
         metierLabel.setText("Métier :");
 
         jBoxMetier.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Veterinaire", "Policier", "Eleveur" }));
+        jBoxMetier.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBoxMetierActionPerformed(evt);
+            }
+        });
 
         mailLabel.setText("Mail :");
 
@@ -241,6 +246,10 @@ public class AddUserDialog extends javax.swing.JDialog {
     private void jTextTelephoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextTelephoneActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextTelephoneActionPerformed
+
+    private void jBoxMetierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBoxMetierActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBoxMetierActionPerformed
 
     /**
      * @param args the command line arguments

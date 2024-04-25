@@ -4,21 +4,46 @@
  */
 package icad2admin.view;
 
+import icad2admin.model.Utilisateur;
 import java.sql.SQLException;
+import javax.swing.JFrame;
 
 /**
  *
  * @author t.combarieu
  */
 public class UpdateUserDialog extends javax.swing.JDialog {
+    
+    private static Utilisateur selectedUser;
+    MainFrame mainFrame = null;
 
     /**
      * Creates new form UpdateUserDialog
+     * @param parent
+     * @param modal
+     * @param user
      */
-    public UpdateUserDialog(java.awt.Frame parent, boolean modal) {
+    public UpdateUserDialog(java.awt.Frame parent, boolean modal, Utilisateur user) {
         super(parent, modal);
+        this.selectedUser= user;
         initComponents();
+        this.mainFrame = (MainFrame)parent;
+        userData();
     }
+
+    private void userData(){
+        if(selectedUser != null){
+            jTextNom.setText(selectedUser.getNom());
+            jTextPrenom.setText(selectedUser.getPrenom());
+            jTextMdp.setText(selectedUser.getMdp());
+            jTextMail.setText(selectedUser.getEmail());
+            jBoxMetier.setSelectedItem(selectedUser.getFonction());
+            jTextAdresse.setText(selectedUser.getAdresse());
+            jTextTelephone.setText(selectedUser.getTel());
+        }
+    }
+    
+ 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -288,7 +313,7 @@ public class UpdateUserDialog extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                UpdateUserDialog dialog = new UpdateUserDialog(new javax.swing.JFrame(), true);
+                UpdateUserDialog dialog = new UpdateUserDialog(new javax.swing.JFrame(), true, selectedUser);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
