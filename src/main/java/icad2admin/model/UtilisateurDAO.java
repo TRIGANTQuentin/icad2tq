@@ -73,13 +73,14 @@ public class UtilisateurDAO {
         ps.setInt(1, unUtilisateur.getId());
         ps.setString(2, unUtilisateur.getNom());
         ps.setString(3, unUtilisateur.getPrenom());
-        ps.setString(3, unUtilisateur.getMdp());
-        ps.setString(4, unUtilisateur.getEmail());
-        ps.setString(5, unUtilisateur.getFonction());
-        ps.setString(6, unUtilisateur.getAdresse());
-        ps.setString(7, unUtilisateur.getTel());
+        ps.setString(4, unUtilisateur.getMdp());
+        ps.setString(5, unUtilisateur.getEmail());
+        ps.setString(6, unUtilisateur.getFonction());
+        ps.setString(7, unUtilisateur.getAdresse());
+        ps.setString(8, unUtilisateur.getTel());
 
         ps.executeUpdate();
+     
 
     }
 

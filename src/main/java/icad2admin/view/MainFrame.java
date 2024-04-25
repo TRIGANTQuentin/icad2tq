@@ -162,7 +162,8 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonAjouterActionPerformed
 
     private void ButtonModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonModifierActionPerformed
-            
+            UpdateUserDialog updateUserDialog = new UpdateUserDialog(this,true);
+            updateUserDialog.setVisible(true);
     }//GEN-LAST:event_ButtonModifierActionPerformed
 
     private void ButtonSupprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSupprimerActionPerformed
