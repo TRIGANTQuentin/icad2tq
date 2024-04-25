@@ -4,13 +4,19 @@
  */
 package icad2admin.view;
 
+import icad2admin.model.Utilisateur;
+import icad2admin.model.UtilisateurDAO;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author t.combarieu
  */
 public class UpdateUserDialog extends javax.swing.JDialog {
+    
+    MainFrame mainFrame = null;
 
     /**
      * Creates new form UpdateUserDialog
@@ -18,6 +24,7 @@ public class UpdateUserDialog extends javax.swing.JDialog {
     public UpdateUserDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.mainFrame = (MainFrame)parent;
     }
 
     /**
@@ -38,18 +45,18 @@ public class UpdateUserDialog extends javax.swing.JDialog {
             String adresse = jTextAdresse.getText();
             String telephone = jTextTelephone.getText();
             
-            //UtilisateurDAO DAO = new UtilisateurDAO();
+            UtilisateurDAO DAO = new UtilisateurDAO();
             
-           // Utilisateur utilisateur = new Utilisateur(nom, prenom, mdp, mail, metier, adresse, telephone);
+            Utilisateur utilisateur = new Utilisateur(nom, prenom, mdp, mail, metier, adresse, telephone);
             
-           // DAO.insert(utilisateur);
+            DAO.insert(utilisateur);
         } catch (Exception ex) {
-           // Logger.getLogger(AddUserDialog.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AddUserDialog.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-       this.dispose();
-       MainFrame main = new MainFrame();
-       main.setVisible(true);
+        this.dispose();
+        MainFrame main = new MainFrame();
+        main.setVisible(true);
     }
             
                  
