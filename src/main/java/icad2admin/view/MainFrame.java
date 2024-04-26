@@ -4,6 +4,7 @@
  */
 package icad2admin.view;
 
+import icad2admin.controller.MainController;
 import icad2admin.model.Utilisateur;
 import icad2admin.model.UtilisateurDAO;
 import java.sql.SQLException;
@@ -19,10 +20,10 @@ import javax.swing.table.DefaultTableModel;
  * @author a.andissac
  */
 public class MainFrame extends javax.swing.JFrame {
+  UtilisateurDAO dao = new UtilisateurDAO();  
+  MainController deleterUser = new MainController(dao);
+    
 
-    /**
-     * Creates new form MainFrame
-     */
     public MainFrame() {
         initComponents();
         this.updateUI();
@@ -167,24 +168,9 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonModifierActionPerformed
 
     private void ButtonSupprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSupprimerActionPerformed
-        int[] selectedRows = tableListeUser.getSelectedRows();
-        
-         UtilisateurDAO dao = new UtilisateurDAO();
-    for (int selectedRow : selectedRows) {
-        try{
-        int userId = (int) tableListeUser.getValueAt(selectedRow, 0);
-        dao.delete(userId);
-        }catch (ClassCastException e) {
-         System.err.println("Erreur: donnée introuvable pour le user ID dans la table");
-        }   catch (SQLException ex) {
-                Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        
-    }
-     DefaultTableModel tblModel = (DefaultTableModel) tableListeUser.getModel();
-    for (int i = selectedRows.length - 1; i >= 0; i--) {
-        tblModel.removeRow(selectedRows[i]);
-    }
+ 
+        deleterUser.deleteUser(tableListeUser); 
+ 
     }//GEN-LAST:event_ButtonSupprimerActionPerformed
 
     /**

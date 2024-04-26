@@ -5,13 +5,13 @@
 package icad2admin.view;
 
 import icad2admin.HashTool;
+import icad2admin.controller.AddController;
 import icad2admin.model.Utilisateur;
 import icad2admin.model.UtilisateurDAO;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.mindrot.jbcrypt.BCrypt;
-
 
 /**
  *
@@ -20,14 +20,16 @@ import org.mindrot.jbcrypt.BCrypt;
 public class AddUserDialog extends javax.swing.JDialog {
 
     MainFrame mainFrame = null;
-    
+    UtilisateurDAO dao = new UtilisateurDAO();
+    AddController addUser = new AddController(dao, this);
+
     /**
      * Creates new form AddUserDialog
      */
     public AddUserDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.mainFrame = (MainFrame)parent;
+        this.mainFrame = (MainFrame) parent;
     }
 
     /**
@@ -200,31 +202,11 @@ public class AddUserDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addButonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButonActionPerformed
-        try {
-            // TODO add your handling code here:
-            String nom = jTextNom.getText();
-            String prenom = jTextPrenom.getText();
-            String mdp = new String(HashTool.hash(String.valueOf(jPassword.getPassword())));
-            String mail = jTextMail.getText();
-            String metier = jBoxMetier.getSelectedItem().toString();
-            String adresse = jTextAdresse.getText();
-            String telephone = jTextTelephone.getText();
-            
-            UtilisateurDAO dao = new UtilisateurDAO();
-            
-            Utilisateur utilisateur = new Utilisateur(nom, prenom, mdp, mail, metier, adresse, telephone);
-            
-            dao.insert(utilisateur);
-        } catch (SQLException ex) {
-            Logger.getLogger(AddUserDialog.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-       this.dispose();
-       this.mainFrame.updateUI();
-       
-       
+        addUser.AddButtonAction();
+        this.mainFrame.updateUI();
+
 //     main.updateUI();
-       
+
     }//GEN-LAST:event_addButonActionPerformed
 
     private void jTextNomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextNomActionPerformed
@@ -311,4 +293,32 @@ public class AddUserDialog extends javax.swing.JDialog {
     private javax.swing.JLabel telephoneLabel;
     private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
+
+    public String getNom() {
+        return jTextNom.getText(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public String getPrenom() {
+        return jTextPrenom.getText();
+    }
+
+    public String getMail() {
+        return jTextMail.getText();
+    }
+
+    public String getMetier() {
+        return jBoxMetier.getSelectedItem().toString();
+    }
+
+    public String getAdresse() {
+        return jTextAdresse.getText();
+    }
+
+    public String getTelephone() {
+        return jTextTelephone.getText();
+    }
+
+    public Object getPassword() {
+        return new String(HashTool.hash(String.valueOf(jPassword.getPassword())));
+    }
 }

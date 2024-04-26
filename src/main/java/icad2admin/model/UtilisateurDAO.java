@@ -67,17 +67,17 @@ public class UtilisateurDAO {
     }
 
     public void update(Utilisateur unUtilisateur) throws SQLException {
-        String query = "UPDATE utilisateur set ID_USER= ?, NOM_USER = ?, PRENOM_USER = ? , MDP_USER = ? , EMAIL_USER= ? , FONCTION_USER = ? , ADRESSE_USER = ? , TELEPHONE_USER = ? ";
+        String query = "UPDATE utilisateur set NOM_USER = ?, PRENOM_USER = ? , MDP_USER = ? , EMAIL_USER= ? , FONCTION_USER = ? , ADRESSE_USER = ? , TELEPHONE_USER = ? WHERE ID_USER= ?";
         PreparedStatement ps = connexion.prepareStatement(query);
 
-        ps.setInt(1, unUtilisateur.getId());
-        ps.setString(2, unUtilisateur.getNom());
-        ps.setString(3, unUtilisateur.getPrenom());
-        ps.setString(4, unUtilisateur.getMdp());
-        ps.setString(5, unUtilisateur.getEmail());
-        ps.setString(6, unUtilisateur.getFonction());
-        ps.setString(7, unUtilisateur.getAdresse());
-        ps.setString(8, unUtilisateur.getTel());
+        ps.setString(1, unUtilisateur.getNom());
+        ps.setString(2, unUtilisateur.getPrenom());
+        ps.setString(3, unUtilisateur.getMdp());
+        ps.setString(4, unUtilisateur.getEmail());
+        ps.setString(5, unUtilisateur.getFonction());
+        ps.setString(6, unUtilisateur.getAdresse());
+        ps.setString(7, unUtilisateur.getTel());
+        ps.setInt(8,unUtilisateur.getId());
 
         ps.executeUpdate();
      
