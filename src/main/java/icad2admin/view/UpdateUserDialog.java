@@ -4,6 +4,9 @@
  */
 package icad2admin.view;
 
+import icad2admin.HashTool;
+import icad2admin.controller.AddController;
+import icad2admin.controller.UpdateController;
 import icad2admin.model.Utilisateur;
 
 
@@ -27,6 +30,8 @@ public class UpdateUserDialog extends javax.swing.JDialog {
     private static Utilisateur selectedUser;
 
     MainFrame mainFrame = null;
+    UtilisateurDAO dao = new UtilisateurDAO();
+    UpdateController updateUser = new UpdateController(dao, this);
 
   
     public UpdateUserDialog(java.awt.Frame parent, boolean modal) {
@@ -232,10 +237,6 @@ public class UpdateUserDialog extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextMailActionPerformed
 
-    private void jTextMdpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextMdpActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextMdpActionPerformed
-
     private void jTextNomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextNomActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextNomActionPerformed
@@ -245,31 +246,17 @@ public class UpdateUserDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jTextAdresseActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-         try {
-            // TODO add your handling code here:
-            String nom = jTextNom.getText();
-            String prenom = jTextPrenom.getText();
-            String mdp = jTextMdp.getText();
-            String mail = jTextMail.getText();
-            String metier = jBoxMetier.getSelectedItem().toString();
-            String adresse = jTextAdresse.getText();
-            String telephone = jTextTelephone.getText();
-            
-            UtilisateurDAO DAO = new UtilisateurDAO();
-            
-            Utilisateur utilisateur = new Utilisateur(nom, prenom, mdp, mail, metier, adresse, telephone);
-            
-            DAO.update(utilisateur);
-        } catch (Exception ex) {
-            Logger.getLogger(AddUserDialog.class.getName()).log(Level.SEVERE, null, ex);
-        }
-          this.dispose();
+          updateUser.updateButtonAction();
           this.mainFrame.updateUI();
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void jBoxMetierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBoxMetierActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jBoxMetierActionPerformed
+
+    private void jTextMdpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextMdpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextMdpActionPerformed
     
         
     /**
@@ -332,4 +319,32 @@ public class UpdateUserDialog extends javax.swing.JDialog {
     private javax.swing.JLabel titleLabel;
     private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
+public String getNom() {
+        return jTextNom.getText(); 
+    }
+
+    public String getPrenom() {
+        return jTextPrenom.getText();
+    }
+
+    public String getMail() {
+        return jTextMail.getText();
+    }
+
+    public String getMetier() {
+        return jBoxMetier.getSelectedItem().toString();
+    }
+
+    public String getAdresse() {
+        return jTextAdresse.getText();
+    }
+
+    public String getTelephone() {
+        return jTextTelephone.getText();
+    }
+
+    public Object getPassword() {
+        return new String(HashTool.hash(String.valueOf(jTextMdp.getText())));
+    }
 }
+

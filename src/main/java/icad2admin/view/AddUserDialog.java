@@ -295,7 +295,7 @@ public class AddUserDialog extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     public String getNom() {
-        return jTextNom.getText(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return jTextNom.getText(); 
     }
 
     public String getPrenom() {
