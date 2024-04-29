@@ -20,17 +20,14 @@ import javax.swing.JOptionPane;
 public class AddController {
 
     private final UtilisateurDAO utilisateurDAO;
-    private final AddUserDialog view; // Assuming AddUserDialog is your view class
+    private final AddUserDialog view;
 
     public AddController(UtilisateurDAO utilisateurDAO, AddUserDialog view) {
         this.utilisateurDAO = utilisateurDAO;
         this.view = view;
-
-        // Optional: Add action listener to a "Cancel" button (if applicable)
-        // view.getCancelButton().addActionListener(e -> view.dispose());
     }
 
-    public void AddButtonAction() {
+    public void addButtonAction() {
         String nom = view.getNom();
         String prenom = view.getPrenom();
         String mdp = new String(HashTool.hash(String.valueOf(view.getPassword())));
@@ -43,7 +40,7 @@ public class AddController {
             Utilisateur utilisateur = new Utilisateur(nom, prenom, mdp, mail, metier, adresse, telephone);
             utilisateurDAO.insert(utilisateur);
             JOptionPane.showMessageDialog(null, "Utilisateur ajouté avec succès!", "Succès", JOptionPane.INFORMATION_MESSAGE);
-            view.dispose(); // Close the dialog after successful addition
+            view.dispose(); 
         } catch (SQLException ex) {
             Logger.getLogger(AddController.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Une erreur est survenue lors de l'ajout de l'utilisateur.", "Erreur", JOptionPane.ERROR_MESSAGE);
