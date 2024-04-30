@@ -77,10 +77,9 @@ public class UtilisateurDAO {
         ps.setString(5, unUtilisateur.getFonction());
         ps.setString(6, unUtilisateur.getAdresse());
         ps.setString(7, unUtilisateur.getTel());
-        ps.setInt(8,unUtilisateur.getId());
+        ps.setInt(8, unUtilisateur.getId());
 
         ps.executeUpdate();
-     
 
     }
 
@@ -92,8 +91,26 @@ public class UtilisateurDAO {
 
         ps.executeUpdate();
     }
-//    public void delete(Utilisateurs unUtilisateur) {
-//        
-//    }
+
+    public Utilisateur getUserById(int userId) throws SQLException {
+        String query = "SELECT * FROM utilisateur WHERE ID_USER = ?";
+        PreparedStatement ps = connexion.prepareStatement(query);
+        ps.setInt(1, userId);
+
+        ResultSet result = ps.executeQuery();
+        if (result.next()) {
+            int id = result.getInt("ID_USER");
+            String nom = result.getString("NOM_USER");
+            String prenom = result.getString("PRENOM_USER");
+            String mdp = result.getString("MDP_USER");
+            String email = result.getString("EMAIL_USER");
+            String fonction = result.getString("FONCTION_USER");
+            String adresse = result.getString("ADRESSE_USER");
+            String tel = result.getString("TELEPHONE_USER");
+            return new Utilisateur(id, nom, prenom, mdp, email, fonction, adresse, tel);
+        } else {
+            return null; // User not found with the given ID
+        }
+    }
 
 }

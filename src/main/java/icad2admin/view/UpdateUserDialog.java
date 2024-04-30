@@ -9,7 +9,6 @@ import icad2admin.controller.AddController;
 import icad2admin.controller.UpdateController;
 import icad2admin.model.Utilisateur;
 
-
 import icad2admin.model.UtilisateurDAO;
 
 import java.sql.SQLException;
@@ -19,13 +18,11 @@ import javax.swing.JFrame;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 /**
  *
  * @author t.combarieu
  */
 public class UpdateUserDialog extends javax.swing.JDialog {
-    
 
     private static Utilisateur selectedUser;
 
@@ -33,22 +30,22 @@ public class UpdateUserDialog extends javax.swing.JDialog {
     UtilisateurDAO dao = new UtilisateurDAO();
     UpdateController updateUser = new UpdateController(dao, this);
 
-  
-    public UpdateUserDialog(java.awt.Frame parent, boolean modal) {
+    public UpdateUserDialog(java.awt.Frame parent, boolean modal, Utilisateur selectedUser) {
         super(parent, modal);
         initComponents();
-        this.mainFrame = (MainFrame)parent;
+        this.mainFrame = (MainFrame) parent;
+        this.selectedUser = selectedUser;
+        setNom(selectedUser.getNom());
+        setPrenom(selectedUser.getPrenom());
+        setMetier(selectedUser.getFonction());
+        setAdresse(selectedUser.getAdresse());
+        setTelephone(selectedUser.getTel());
+        setPassword(selectedUser.getMdp());
+        setMail(selectedUser.getEmail());
 
     }
 
- 
-    
- 
 
-
-  
-            
-                 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -242,8 +239,9 @@ public class UpdateUserDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jTextAdresseActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-          updateUser.updateButtonAction();
-          this.mainFrame.updateUI();
+
+        updateUser.updateButtonAction();
+        this.mainFrame.updateUI();
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void jBoxMetierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBoxMetierActionPerformed
@@ -253,8 +251,7 @@ public class UpdateUserDialog extends javax.swing.JDialog {
     private void jTextMdpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextMdpActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextMdpActionPerformed
-    
-        
+
     /**
      * @param args the command line arguments
      */
@@ -285,7 +282,7 @@ public class UpdateUserDialog extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                UpdateUserDialog dialog = new UpdateUserDialog(new javax.swing.JFrame(), true);
+                UpdateUserDialog dialog = new UpdateUserDialog(new javax.swing.JFrame(), true, selectedUser);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -316,7 +313,11 @@ public class UpdateUserDialog extends javax.swing.JDialog {
     private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
 public String getNom() {
-        return jTextNom.getText(); 
+        return jTextNom.getText();
+    }
+
+    public int getId() {
+        return selectedUser.getId();
     }
 
     public String getPrenom() {
@@ -339,8 +340,37 @@ public String getNom() {
         return jTextTelephone.getText();
     }
 
-    public Object getPassword() {
+    public String getPassword() {
         return new String(HashTool.hash(String.valueOf(jTextMdp.getText())));
     }
-}
 
+    public void setNom(String nom) {
+        jTextNom.setText(nom);
+    }
+
+    public void setPrenom(String prenom) {
+        jTextPrenom.setText(prenom);
+    }
+
+    public void setMail(String mail) {
+        jTextMail.setText(mail);
+    }
+
+    public void setMetier(String fonction) {
+        jBoxMetier.setSelectedItem(fonction);
+    }
+
+    public void setAdresse(String adresse) {
+        jTextAdresse.setText(adresse);
+    }
+
+    public void setTelephone(String tel) {
+        jTextTelephone.setText(tel);
+    }
+
+    public void setPassword(String mdp) {
+
+        jTextMdp.setText(mdp);
+
+    }
+}

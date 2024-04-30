@@ -28,6 +28,7 @@ public class UpdateController {
 
     }
     public void updateButtonAction() {
+        int id = view.getId();
         String nom = view.getNom();
         String prenom = view.getPrenom();
         String mdp = new String(HashTool.hash(String.valueOf(view.getPassword())));
@@ -37,7 +38,7 @@ public class UpdateController {
         String telephone = view.getTelephone();
 
         try {
-            Utilisateur utilisateur = new Utilisateur(nom, prenom, mdp, mail, metier, adresse, telephone);
+            Utilisateur utilisateur = new Utilisateur(id, nom, prenom, mdp, mail, metier, adresse, telephone);
             utilisateurDAO.update(utilisateur);
             JOptionPane.showMessageDialog(null, "Utilisateur modifie avec succès!", "Succès", JOptionPane.INFORMATION_MESSAGE);
             view.dispose(); 

@@ -20,9 +20,9 @@ import javax.swing.table.DefaultTableModel;
  * @author a.andissac
  */
 public class MainFrame extends javax.swing.JFrame {
-  UtilisateurDAO dao = new UtilisateurDAO();  
-  MainController deleterUser = new MainController(dao);
-    
+
+    UtilisateurDAO dao = new UtilisateurDAO();
+    MainController deleterUser = new MainController(dao);
 
     public MainFrame() {
         initComponents();
@@ -30,20 +30,19 @@ public class MainFrame extends javax.swing.JFrame {
         tableListeUser.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-               updateModifierButtonState();
-               
+                updateModifierButtonState();
+
             }
         });
         updateModifierButtonState();
-     
+
     }
-    
-    private void updateModifierButtonState(){
+
+    private void updateModifierButtonState() {
         int selectRow = tableListeUser.getSelectedRowCount();
         ButtonModifier.setEnabled(selectRow == 1);
-        ButtonSupprimer.setEnabled(selectRow > 0 );
+        ButtonSupprimer.setEnabled(selectRow > 0);
     }
- 
 
     public void updateUI() {
         DefaultTableModel tblModel = (DefaultTableModel) tableListeUser.getModel();
@@ -57,6 +56,7 @@ public class MainFrame extends javax.swing.JFrame {
             tblModel.addRow(data);
         }
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -152,19 +152,34 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void ButtonAjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAjouterActionPerformed
 
-        AddUserDialog addUserDialog = new AddUserDialog(this,true);
+        AddUserDialog addUserDialog = new AddUserDialog(this, true);
         addUserDialog.setVisible(true);
     }//GEN-LAST:event_ButtonAjouterActionPerformed
 
     private void ButtonModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonModifierActionPerformed
-            UpdateUserDialog updateUserDialog = new UpdateUserDialog(this,true);
+        int ligneSelectionnee = tableListeUser.getSelectedRow();
+        if (ligneSelectionnee >= 0) { 
+            int idUtilisateur = (int) tableListeUser.getValueAt(ligneSelectionnee, 0); 
+            try {
+                Utilisateur utilisateurSelectionne = dao.getUserById(idUtilisateur); 
+            } catch (SQLException ex) {
+                Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Utilisateur selectedUser = null;
+            try {
+                selectedUser = dao.getUserById(idUtilisateur);
+            } catch (SQLException ex) {
+                Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            UpdateUserDialog updateUserDialog = new UpdateUserDialog(this, true, selectedUser);
             updateUserDialog.setVisible(true);
+        }
     }//GEN-LAST:event_ButtonModifierActionPerformed
 
     private void ButtonSupprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSupprimerActionPerformed
- 
-        deleterUser.deleteUser(tableListeUser); 
- 
+
+        deleterUser.deleteUser(tableListeUser);
+
     }//GEN-LAST:event_ButtonSupprimerActionPerformed
 
     /**
