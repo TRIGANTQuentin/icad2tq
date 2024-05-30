@@ -21,6 +21,7 @@ public class UpdateController {
      
     private final UtilisateurDAO utilisateurDAO;
     private final UpdateUserDialog view; 
+    private final Utilisateur user = null;
 
     public UpdateController(UtilisateurDAO utilisateurDAO, UpdateUserDialog view) {
         this.utilisateurDAO = utilisateurDAO;
@@ -36,9 +37,10 @@ public class UpdateController {
         String metier = view.getMetier();
         String adresse = view.getAdresse();
         String telephone = view.getTelephone();
+        boolean isdeleted= user.getEtat();
 
         try {
-            Utilisateur utilisateur = new Utilisateur(id, nom, prenom, mdp, mail, metier, adresse, telephone);
+            Utilisateur utilisateur = new Utilisateur(id, nom, prenom, mdp, mail, metier, adresse, telephone,isdeleted);
             utilisateurDAO.update(utilisateur);
             JOptionPane.showMessageDialog(null, "Utilisateur modifie avec succès!", "Succès", JOptionPane.INFORMATION_MESSAGE);
             view.dispose(); 

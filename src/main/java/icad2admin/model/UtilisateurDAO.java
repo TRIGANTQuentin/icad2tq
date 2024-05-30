@@ -39,11 +39,10 @@ public class UtilisateurDAO {
         ps.executeUpdate();
 
     }
+    public List<Utilisateur> getAllDelete() {
 
-    public List<Utilisateur> getAll() {
-
-        List<Utilisateur> utilisateurs = new ArrayList<Utilisateur>();
-        String query = "SELECT * FROM utilisateur";
+        List<Utilisateur> utilisateursDeleted = new ArrayList<Utilisateur>();
+        String query = "SELECT * FROM utilisateur WHERE ISDELETED = 1 ";
 
         try {
             Statement statement = this.connexion.createStatement();
@@ -57,7 +56,35 @@ public class UtilisateurDAO {
                 String fonction = result.getString("FONCTION_USER");
                 String adresse = result.getString("ADRESSE_USER");
                 String tel = result.getString("TELEPHONE_USER");
-                Utilisateur utilisateur = new Utilisateur(id, nom, prenom, mdp, email, fonction, adresse, tel);
+                Boolean isdeleted = result.getBoolean("ISDELETED");
+                Utilisateur utilisateur = new Utilisateur(id, nom, prenom, mdp, email, fonction, adresse, tel, isdeleted);
+                utilisateursDeleted.add(utilisateur);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return utilisateursDeleted;
+    }
+
+    public List<Utilisateur> getAll() {
+
+        List<Utilisateur> utilisateurs = new ArrayList<Utilisateur>();
+        String query = "SELECT * FROM utilisateur WHERE ISDELETED = 0 ";
+
+        try {
+            Statement statement = this.connexion.createStatement();
+            ResultSet result = statement.executeQuery(query);
+            while (result.next()) {
+                int id = result.getInt("ID_USER");
+                String nom = result.getString("NOM_USER");
+                String prenom = result.getString("PRENOM_USER");
+                String mdp = result.getString("MDP_USER");
+                String email = result.getString("EMAIL_USER");
+                String fonction = result.getString("FONCTION_USER");
+                String adresse = result.getString("ADRESSE_USER");
+                String tel = result.getString("TELEPHONE_USER");
+                Boolean isdeleted = result.getBoolean("ISDELETED");
+                Utilisateur utilisateur = new Utilisateur(id, nom, prenom, mdp, email, fonction, adresse, tel, isdeleted);
                 utilisateurs.add(utilisateur);
             }
         } catch (SQLException e) {
@@ -84,7 +111,15 @@ public class UtilisateurDAO {
     }
 
     public void delete(int userId) throws SQLException {
-        String query = "DELETE FROM utilisateur WHERE ID_USER = ?";
+        String query = "UPDATE utilisateur set ISDELETED = 1 WHERE ID_USER = ?";
+        PreparedStatement ps = connexion.prepareStatement(query);
+
+        ps.setInt(1, userId);
+
+        ps.executeUpdate();
+    }
+    public void reactivate(int userId) throws SQLException {
+        String query = "UPDATE utilisateur set ISDELETED = 0 WHERE ID_USER = ?";
         PreparedStatement ps = connexion.prepareStatement(query);
 
         ps.setInt(1, userId);
@@ -107,7 +142,8 @@ public class UtilisateurDAO {
             String fonction = result.getString("FONCTION_USER");
             String adresse = result.getString("ADRESSE_USER");
             String tel = result.getString("TELEPHONE_USER");
-            return new Utilisateur(id, nom, prenom, mdp, email, fonction, adresse, tel);
+            Boolean isdeleted= result.getBoolean("ISDELETED");
+            return new Utilisateur(id, nom, prenom, mdp, email, fonction, adresse, tel,isdeleted);
         } else {
             return null; // User not found with the given ID
         }

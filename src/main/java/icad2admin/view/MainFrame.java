@@ -67,6 +67,7 @@ public class MainFrame extends javax.swing.JFrame {
         ButtonAjouter = new javax.swing.JButton();
         ButtonSupprimer = new javax.swing.JButton();
         ButtonModifier = new javax.swing.JButton();
+        ButtonReactiver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Icad2Admin");
@@ -109,6 +110,13 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        ButtonReactiver.setText("Réactiver");
+        ButtonReactiver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonReactiverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -126,9 +134,12 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(labelListe, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(235, 235, 235))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 766, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ButtonAjouter))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(ButtonReactiver)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(ButtonAjouter)))
                         .addGap(38, 38, 38))))
         );
         layout.setVerticalGroup(
@@ -137,7 +148,9 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addComponent(labelListe)
                 .addGap(15, 15, 15)
-                .addComponent(ButtonAjouter)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ButtonAjouter)
+                    .addComponent(ButtonReactiver))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
@@ -182,6 +195,11 @@ public class MainFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_ButtonSupprimerActionPerformed
 
+    private void ButtonReactiverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonReactiverActionPerformed
+        ReactivateDialog reactivateUser = new ReactivateDialog(this, true);
+        reactivateUser.setVisible(true);
+    }//GEN-LAST:event_ButtonReactiverActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -220,6 +238,7 @@ public class MainFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonAjouter;
     private javax.swing.JButton ButtonModifier;
+    private javax.swing.JButton ButtonReactiver;
     private javax.swing.JButton ButtonSupprimer;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelListe;

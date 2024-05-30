@@ -17,8 +17,9 @@ public class Utilisateur {
     private String fonction;
     private String adresse;
     private String tel;
+    private Boolean isdeleted;
 
-    public Utilisateur(int id, String nom, String prenom, String mdp, String email, String fonction, String adresse, String tel) {
+    public Utilisateur(int id, String nom, String prenom, String mdp, String email, String fonction, String adresse, String tel,Boolean isdeleted ) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -27,6 +28,7 @@ public class Utilisateur {
         this.fonction = fonction;
         this.adresse = adresse;
         this.tel = tel;
+        this.isdeleted = isdeleted;
     }
 
     public Utilisateur(String nom, String prenom, String mdp, String email, String fonction, String adresse, String tel) {
@@ -37,6 +39,7 @@ public class Utilisateur {
         this.fonction = fonction;
         this.adresse = adresse;
         this.tel = tel;
+
     }
 
     public int getId() {
@@ -102,6 +105,15 @@ public class Utilisateur {
     public void setTel(String tel) {
         this.tel = tel;
     }
+    
+    public Boolean getEtat(){
+        return isdeleted;
+       
+    }
+    public void setEtat(Boolean isdeleted){
+        this.isdeleted = isdeleted; 
+    }
+    
     
     
 }
